@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body ng-app=test1 ng-controller=control>
+<!--用户名username 类型usertype 密码userpwd
+确认密码confirmpwd 注册协议isagree    注册register-->
+用户名: <input type="text" ng-model="username"><br>
+用户类型: <select name="" id="" ng-model="usertype">
+    <option value="1">学生</option>
+    <option value="2">老师</option>
+    <option value="3">校长</option>
+</select> <br>
+密码: <input type="password" ng-model="userpwd"> <br>
+确认密码: <input type="password" ng-model="confirmpwd"> <br>
+注册协议: <input type="checkbox" ng-model="isagree"> <br>
+<input type="button" value="注册" ng-click="register()">
+<div >{{msg}}</div>
+<script src=angular.js></script>
+<script>
+    var haha=angular.module("test1",[]);
+    haha.controller("control",function ($scope) {
+        $scope.username="";
+        $scope.usertype="";
+        $scope.userpwd="";
+        $scope.confirmpwd="";
+        $scope.msg="";
+        $scope.isagree=true;
+        $scope.register=function () {
+            if($scope.username.length<6){
+                alert("用户名太短");
+                return
+            };
+            if($scope.userpwd<6){
+                alert("密码太短");
+                return
+            };
+            if($scope.confirmpwd!==$scope.userpwd){
+                alert("两次输入密码不一致")
+                return
+            };
+            if($scope.isagree==false){
+                alert("必须同意协议,否则不能注册");
+                return
+            }
+        var X=new User($scope.username,$scope.userpwd,$scope.usertype);
+        var result=X.save();
+        if(result){
+            $scope.msg="注册成功"
+        }else{
+            $scope.msg="注册失败";
+        }
+       }
+    });
+    function User(name,pwd,type) {
+        this.name=name;
+        this.pwd=pwd;
+        this.type=type;
+    }
+    User.prototype.save=function () {
+        var str=localStorage.getItem("myusers")||"[]";
+        var arr=JSON.parse(str);
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].name==this.name){
+                alert("用户名重复,请重新注册")
+                return ;
+            }
+        };
+            arr.push({name:this.name,pwd:this.pwd,type:this.type});
+            localStorage.setItem("myusers",JSON.stringify(arr));
+            return true;
+
+
+    }
+</script>
+</body>
+</html>
