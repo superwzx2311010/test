@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app=mod1>
+<div ng-controller=cont1>
+    <p ng-show="isshow">你看不到我</p>
+    <button ng-click="haha();">按钮 </button>
+</div>
+<script src=angular.js></script>
+<script>
+    var mod1=angular.module("mod1",[]);
+    mod1.controller("cont1",["$scope",function ($scope) {
+//        $scope.isshow=true;
+        $scope.haha=function () {
+            $scope.isshow=!$scope.isshow;
+            console.log($scope.isshow);
+        }
+    }])
+</script>
+</body>
+</html>

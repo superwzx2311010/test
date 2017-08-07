@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .red {
+            background-color: #ff3fe8;
+        }
+
+        .green {
+            background-color: #3ac41f;
+        }
+
+        .yellow {
+            background-color: #ff951b;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body ng-app="app1">
+<div ng-controller="cont1">
+    <ul>
+        <li ng-repeat="item1 in users">
+            {{item1.name}} , {{item1.age}}
+        </li>
+    </ul>
+    <div ng-repeat="item2 in arr track by $index">
+        {{item2}}{{$index}}
+    </div>
+    <div ng-repeat="item3 in obj1">
+        {{item3.name}}
+    </div>
+    <div ng-repeat="item4 in obj2" ng-class="{green:item4.age>20&&item4.age<30,yellow:item4.age<20,red:item4.age>30}">
+        {{item4.name}}{{item4.age}}
+    </div>
+    <div>------------------middle------------------</div>
+    <div ng-repeat="item5 in obj3" class="{{$first? 'red':'green'}}">
+        {{item5.name}}{{item5.age}}
+    </div>
+</div>
+<script src=angular.js></script>
+<script>
+    var mod1 = angular.module('app1', [])
+    mod1.controller("cont1", ["$scope", function ($scope) {
+        $scope.users = [
+            {name: "a", age: 1},
+            {name: "b", age: 2},
+            {name: "c", age: 3},
+            {name: "d", age: 4}
+        ]
+        $scope.arr = [1, 2, 3, 4, 5, 1];
+        $scope.obj1 = {
+            xm: {name: '小明', age: 18, id: 1},
+            xh: {name: '小红', age: 28, id: 2},
+            xt: {name: '小天', age: 10, id: 3},
+            xy: {name: '小月', age: 38, id: 4}
+        }
+        $scope.obj2 = {
+            xm: {name: '小明', age: 18, id: 1},
+            xh: {name: '小红', age: 28, id: 2},
+            xt: {name: '小天', age: 10, id: 3},
+            xy: {name: '小月', age: 38, id: 4}
+        }
+        $scope.obj3 = {
+            xm: {name: '小明', age: 18, id: 1},
+            xh: {name: '小红', age: 28, id: 2},
+            xq: {name: '小q', age: 28, id: 2},
+            xt: {name: '小天', age: 10, id: 3},
+            xy: {name: '小月', age: 38, id: 4}
+        }
+    }])
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .ng-cloak{
+            display: none;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body ng-app="app1" ng-controller='cont1'>
+<!--<div ng-controller="cont1 as obj">
+
+    {{obj.name}}
+    <div ng-bind="name"></div>
+    <div class="ng-cloak">
+       {{name}}
+    </div>
+</div>-->
+<div ng-repeat="item in users">
+    {{item.name}},{{item.age}}
+</div>
+<script src=angular.js></script>
+<script>
+    var mod1=angular.module("app1",[]);
+    mod1.controller("cont1",function ($scope) {
+        this.name="haha";
+        $scope.name="hehe"
+        $scope.users=[
+            {name:a,age:1},
+            {name:b,age:2},
+            {name:c,age:3},
+            {name:d,age:4}
+        ]
+    })
+</script>
+</body>
+</html>
