@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red{
+            background-color: #ff89c7;
+        }
+        .blue{
+            background-color: #807fff;
+        }
+    </style>
+</head>
+
+<body ng-app="mod1">
+<div class="my-btn" col="red">haha</div>
+<script id="haha" type="text/ng-template" >
+      <div>
+          <button class="{{temp}}" ng-transclude>登陆</button>
+          <p ng-value="125+125"></p>
+      </div>
+</script>
+<script src=angular.js></script>
+
+<script>
+    var mod1=angular.module("mod1",[]);
+    mod1.directive("myBtn",[function () {
+        return{
+//            template:"你是猪"
+//            templateUrl:"haha.html"
+              templateUrl:"haha",
+              restrict:"C",
+              replace:true,
+              transclude:true,
+              scope:{
+                  temp:"@col",
+              },
+            link:function(scope,element,attributes){
+                scope.msg="这是link";
+                console.log(element);
+                element.on("click",function () {
+                    alert("我是link")
+                });
+                console.log(attributes);
+
+              }
+        }
+
+    }])
+</script>
+</body>
+</html>

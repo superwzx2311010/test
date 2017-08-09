@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app=mod1 ng-controller=cont11>
+<div>
+    {{data|date: "yyyy年MM月dd日 hh:mm:ss"}}
+    {{money|currency:"#"}}
+
+</div>
+<script src=angular.js></script>
+<script>
+    var mod1=angular.module("mod1",[]);
+    mod1.controller('cont11',["$scope",function ($scope) {
+        $scope.data=1234567890987;
+        $scope.money=999999999;
+    }])
+</script>
+</body>
+</html>
