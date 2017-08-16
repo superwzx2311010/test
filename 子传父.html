@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src=vue221.js></script>
+</head>
+<body>
+<div id=app>
+    <zong></zong>
+</div>
+<template id=zong>
+    <div>
+        <div>我是总</div>
+        <fen1 v-on:send="getdata"></fen1>
+    </div>
+</template>
+<template id=fen1>
+   <div>
+       <div >我是分</div>
+       <button @click="senddata">我是按钮</button>
+   </div>
+</template>
+<script>
+    Vue.component("zong",{
+        template:"#zong",
+        methods:{
+            getdata:function (input) {
+              alert(input)
+          }
+        },
+        components:{
+            "fen1":{
+                template:"#fen1",
+                methods:{
+                    senddata:function () {
+                        this.$emit("send","hello");
+                    }
+                }
+            }
+        }
+    })
+    new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

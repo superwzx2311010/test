@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src=vue221.js></script>
+</head>
+<body>
+<div id=app>
+<zong></zong>
+</div>
+<template id="zong">
+    <div>
+        <div>我是总</div>
+        <fen1 :haha="hehe"></fen1>
+    </div>
+</template>
+<template id="fen1">
+    <div>我是分{{haha}}</div>
+</template>
+<script>
+    Vue.component(
+        "zong",{
+            template:"#zong",
+            data:function () {
+                return{
+                  hehe:"我是传过去的"
+                }
+            },
+            components:{
+                "fen1":{
+                    template:"#fen1",
+                    props:["haha"],
+                }
+            }
+    }
+    )
+    new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>
