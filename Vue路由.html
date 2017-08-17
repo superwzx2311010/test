@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src=vue221.js></script>
+    <script src=vue-router231.js></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<template id=zong>
+   <div>
+       <h1>我是总</h1>
+       <router-view></router-view>
+   </div>
+</template>
+<template id=fen>
+    <h3>我是分</h3>
+</template>
+<script>
+    var zong = Vue.extend({
+        template: "#zong"
+    });
+    var fen = Vue.extend({
+        template: "#fen"
+    });
+    var router = new VueRouter({
+        routes: [
+            {
+                path: "/zong",
+                component: zong,
+                children:[
+                    {
+                        path: "fen",
+                        component: fen,
+                    }
+                ]
+            },
+
+        ]
+    });
+    new Vue({
+        el: "#app",
+        router: router
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src=vue1026.js></script>
+</head>
+<body>
+<div id="app">
+    <zong></zong>
+</div>
+<template id="zong">
+    <div>
+        <div>我是总</div>
+        <fen></fen>
+    </div>
+</template>
+<template id="fen">
+    <div>我是分</div>
+</template>
+
+</body>
+<script>
+    Vue.component("zong",{
+        template:"#zong",
+        components:{
+            "fen":{
+            template:"#fen"
+    }
+        }
+    })
+    new Vue({
+        el:"#app"
+    })
+</script>
+
+</html>
